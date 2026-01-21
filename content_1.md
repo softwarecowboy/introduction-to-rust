@@ -1,63 +1,175 @@
-Geneza i Wstęp: Krótka historia Rusta, jego główne cele i powszechne zastosowania (systemy operacyjne, narzędzia CLI, WebAssembly, systemy wbudowane itp.).
+---
 
+title: "Introduction to *Rust programming language*"
+sub_title:
+author: Rafał Draws
+
+theme:
+  name: tokyonight-storm
+  override:
+    footer:
+      style: template
+      center: 'Introduction to **Rust** programming language'
+      right: "{current_slide} / {total_slides}"
+      height: 3
+    palette:
+      classes:
+        noice:
+          foreground: red
     
-    Rdzeń Bezpieczeństwa Pamięci: Wyjaśnienie fundamentalnej koncepcji Ownership, Lifetimes i Borrowingu
-    System Typów: Omówienie silnego typowania struct i enum
-    Cargo: Wprowadzenie do niezbędnego narzędzia w ekosystemie Rusta - Cargo
 
 ---
 
+Agenda
+===
 
-# Introduction to Rust
-
-Hello. 
-
-I would like to explain and introduce you to Rust programming language as I would like to have it explained to me when I was learning it.
-
----
-
-# Who am I
-
-I'm Rafał Draws, SWE at Nordea Bank. I'm a Rust Poland co-founder, a music and car nerd.
-
----
-
-# Pre-word
-
-Most of the examples I'll be giving will be comparing Python and Rust, as they differ the most. 
-
-My belief is that if you're familiar with syntax of C#/Java, Scala, Kotlin, C, Go or TypeScript. you shouldn't have an issue learning Rust. If Python is your only programming languages, there might be bumps in the road.
+- A brief history of Rust, its main goals, and common applications.
+- Memory Safety Core - Ownership, Borrowing and lifetimes
+- Typesystem explanation
+- Cargo
 
 
----
 
-# Structure of this presentation
-
-- 5 minutes of general principles
-- 10 minutes of what
-- 10 minutes of why 
-- 10 minutes of how
-- 10 minutes of possibilities
-
-as little async as possible, since async Rust is it's own language
-
----
-
-# What is Rust? pt.1
-
-Rust is a general-purpose programming language. It is noted for its emphasis on performance, type safety, concurrency, and memory safety. 
+<!-- end_slide -->
 
 
----
-
-# What is Rust? pt.2
-
-Rust supports multiple programming paradigms. 
-
-It was influenced by ideas from functional programming, including immutability, higher-order functions, algebraic data types, and pattern matching.
 
 
----
+
+
+Who am I
+===
+<!-- column_layout: [2, 1] -->
+<!-- column: 0 -->
+
+Rafał Draws, MSc. Eng.
+<!-- pause -->
+- SDE at Nordea Bank 
+<!-- pause -->
+- Rust Poland co-founder
+<!-- pause -->
+- Music nerd 
+<!-- pause -->
+- Automotive nerd 
+<!-- pause -->
+
+<!-- column: 1 -->
+
+
+ 
+how do you tell that someone drives a Lexus?
+
+<!-- pause -->
+
+they'll tell you
+
+<!-- pause -->
+![](car.jpg)
+
+
+<!-- pause -->
+yes its '99, has 300k miles
+
+
+<!-- end_slide -->
+
+
+What is Rust?
+===
+
+"Rust is a general-purpose programming language. It is noted for its emphasis on performance, type safety, concurrency, and memory safety. 
+<!-- pause -->
+
+Rust supports multiple programming paradigms. It was influenced by ideas from functional programming, including immutability, higher-order functions, algebraic data types, and pattern matching.
+<!-- pause -->
+
+It also supports object-oriented programming via structs, enums, traits, and methods.
+
+<!-- pause -->
+
+
+Rust is noted for enforcing memory safety (i.e., that all references point to valid memory) without a conventional garbage collector;
+ 
+instead, memory safety errors and data races are prevented by the "**borrow checker**", which tracks the object lifetime of references at compile time."
+
+~ Wikipedia
+
+<!-- end_slide -->
+
+
+
+A brief history of Rust
+===
+
+Canadian software developer Graydon Hoare, created Rust in 2006 while working at Mozilla as a side project.
+
+He named the language after a specific type of fungi that is "over-engineered for survival".
+
+
+<!-- end_slide -->
+
+
+
+A brief history of Rust
+===
+
+Rust interpreter was written in OCaml, and the language was inspired by programming languages from 1970-1990s, such as: CLU, BETA, Mesa, NIL, Erlang, Newsqueak, Napier, Hermes, Sather, Limbo and Alef.
+
+<!-- pause -->
+Hoare described it as "technology from the past come to save the future from itself".
+
+<!-- pause -->
+In 2012, in a interview by InfoQ, upon being asked a question: "Why would developers choose Rust", Graydon answered:
+
+<!-- pause -->
+- "*Our target audience is "frustrated C++ developers". I mean, that's _us_. So if you are in a similar situation we're in, repeatedly finding yourself forced to pick C++ for systems-level work due to its performance and deployment characteristics, but would like something safer and less painful, we hope we can provide that.*"
+
+<!-- pause -->
+
+And they did. 
+
+<!-- end_slide -->
+
+The History of Rust, by Steve Klabnik
+===
+
+![steveklabnik-lecture](image-2.png)
+
+<!-- end_slide -->
+
+
+Rust main goals
+===
+
+
+
+
+
+<!-- end_slide -->
+
+Rust applience over the years
+===
+
+
+- 2006, Rust is created in Mozilla Labs
+- 2009, Rust is officially incubated by Mozilla
+- 2012, Rust is implemented in Rust rather than in OCaml
+- 2015, Rust 1.0 is released
+- 2018, AWS Firecracker was built to power Lambda and Fargate
+- 2020, Discord rewrote Read states from Go to Rust to eliminate Garbage Collection spikes && Polars project released
+- 2022, Rust merged into Linux Kernel && Cloudflare replaced Nginx with Pingora, proxy written in Rust
+- 2025, Rust no longer experimental in Linux Kernel
+
+<!-- end_slide -->
+
+
+
+
+
+
+
+
+
 
 # How Rust puts emphasis on type safety?
 
@@ -69,11 +181,11 @@ It was influenced by ideas from functional programming, including immutability, 
 6. Zero-Cost abstractions
 
 
----
+<!-- end_slide -->
 
 # 1. Functions must take in typed parameters and return type. 
 
-```rust
+```rust +line_numbers +exec
 enum Pizzeria {
     KUBRYK,
     PIRATTO,
@@ -87,19 +199,33 @@ enum Sauce {
 }
 
 
+#[derive(Debug)]
+enum SatisfactionError {
+    TooSpicy,
+    AllergicTo(String),
+    NotEnoughSauce,
+    BadPizzeria,
+}
+
+#[derive(Debug)]
+struct Satisfaction {
+    pub level: u32,
+    pub comment: String,
+}
+
 enum Ingridient {
     Meat {
-        type: String,
-        double: bool
-    }, // struct
+        pub type: String,
+        pub double: bool
+        }, // struct
     Rocket, // single enum
     Cheese(String), // tuple struct
 }
 
 struct PizzaBox {
-    source: Pizzeria,
-    ingridients: Vec<Ingridient>,
-    sauces: [Option<Sauce>; 2],
+    pub source: Pizzeria,
+    pub ingridients: Vec<Ingridient>,
+    pub sauces: [Option<Sauce>; 2],
 }
 
 fn eat_pizza(box: PizzaBox) -> Result<Satisfaction, SatisfactionError> {
@@ -179,7 +305,7 @@ struct Satisfaction {
 ```
 
 
----
+<!-- end_slide -->
 
 # Ownership and Borrowing System
 
@@ -194,7 +320,7 @@ Rust offers a third way. The compiler refuses to build your code unless it can p
 (Hence some call Rust development as CDD, Compiler Driven Development)
 
 
----
+<!-- end_slide -->
 
 # Immutability by default
 
@@ -214,14 +340,14 @@ fn main() {
 }
 ```
 
----
+<!-- end_slide -->
 
 # No nulls!
 
 Sir Charles Antony Richard Hoare, a british computer scientist, inventor of Quicksort algorithm and grandfather of "design by contract" famously said:
 "I call it my billion-dollar mistake. It was the invention of the null reference in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years."
 
----
+<!-- end_slide -->
 
 # So how do we omit nulls?
 
@@ -230,7 +356,7 @@ Option<T>;
 Result<Ok, Err>;
 ```
 
----
+<!-- end_slide -->
 
 # Ok, so how did the Cloudflare famously crashed?
 
@@ -239,7 +365,7 @@ Result<Ok, Err>;
 
 ```
 
----
+<!-- end_slide -->
 
 # 1. Why write in Rust when you can achieve the same in Python?
 
@@ -248,7 +374,7 @@ Result<Ok, Err>;
 3. Community
 
 
----
+<!-- end_slide -->
 
 # 1a. Resources matter
 
@@ -261,7 +387,7 @@ between Rust and C++ - Patrik Karlsson, p.16 2023
 https://www.diva-portal.org/smash/get/diva2:1761754/FULLTEXT01.pdf
 
 
----
+<!-- end_slide -->
 
 # 1b. Resources matter
 
@@ -275,7 +401,7 @@ https://www.diva-portal.org/smash/get/diva2:1761754/FULLTEXT01.pdf
 
 
 
----
+<!-- end_slide -->
 
 # 2. Why write in Rust when you can achieve the same in C?
 
@@ -284,7 +410,7 @@ https://www.diva-portal.org/smash/get/diva2:1761754/FULLTEXT01.pdf
 3. Cargo
 
 
----
+<!-- end_slide -->
 
 # 3. You mentioned upfront best practices enforced by compiler, what exactly do you mean bud?
 
@@ -293,10 +419,10 @@ https://www.diva-portal.org/smash/get/diva2:1761754/FULLTEXT01.pdf
 - Ownership model
 - RAII
 - data-race-free concurrency
-- Option<T>, Result<T, E>
+- Option`<T>`, Result`<T, E>`
 
 
----
+<!-- end_slide -->
 
 #5. Why compiling is worth it and why Rust is superb at it?
 
@@ -307,7 +433,7 @@ https://www.diva-portal.org/smash/get/diva2:1761754/FULLTEXT01.pdf
 Therefore, if you compile executable for linux, you won't be able to run it on Windows machine!
 
 
----
+<!-- end_slide -->
 
 #6. Enter cargo
 
@@ -318,7 +444,7 @@ Therefore, if you compile executable for linux, you won't be able to run it on W
 5. Wonderful compiler errors.
 
 
----
+<!-- end_slide -->
 
 #7. Enough with the yapping, explain the ownership please.
 
