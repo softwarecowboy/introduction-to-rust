@@ -1,7 +1,7 @@
 ---
 
 title: "Introduction to Rust programming language"
-sub_title:
+sub_title: ""
 author: Rafał Draws
 
 theme:
@@ -16,16 +16,14 @@ theme:
       classes:
         noice:
           foreground: red
-    
-
 ---
 
 Agenda
 ===
 
 - A brief history of Rust
-- Memory Safety Core - Ownership, Borrowing, lifetimes
 - Typesystem
+- Memory Safety Core - Ownership, Borrowing, lifetimes
 - Cargo
 - Applience
 
@@ -37,7 +35,7 @@ Who am I
 ===
 <!-- column_layout: [2, 1] -->
 <!-- column: 0 -->
-![image:width:20%](image-3.png)
+![image:width:20%](face.png)
 Rafał Draws, MSc. Eng.
 <!-- pause -->
 - SDE at Nordea Bank 
@@ -104,14 +102,14 @@ He named the language after a specific type of fungi that is "over-engineered fo
 
 
 <!-- column: 0-->
-![alt text](image-1.png)
+![alt text](rust-1.png)
 <!-- column: 1-->
 <!-- new_line -->
 <!-- new_line -->
-![alt text](image-5.png)
+![alt text](rust-2.png)
 <!-- column: 2 -->
 
-![alt text](image-4.png)
+![alt text](rust-3.png)
 <!-- end_slide -->
 
 
@@ -133,7 +131,7 @@ In 2012, in a interview by InfoQ, upon being asked a question: "Why would develo
 <!-- pause -->
 <!-- column_layout: [1, 3] -->
 <!-- column: 0 -->
-![alt text](image-6.png)
+![alt text](mr_hoare.png)
 <!-- column: 1 -->
 - "*Our target audience is "frustrated C++ developers". I mean, that's _us_. So if you are in a similar situation we're in, repeatedly finding yourself forced to pick C++ for systems-level work due to its performance and deployment characteristics, but would like something safer and less painful, we hope we can provide that.*"
 
@@ -148,15 +146,15 @@ Rust history over the years
 ===
 
 
+<!-- incremental_lists: true -->
 - 2006, Rust is created in Mozilla Labs
 - 2009, Rust is officially incubated by Mozilla
 - 2010, The public reveal at Mozilla Summit
-- 2012, Rust is implemented in Rust rather than in OCaml
+- 2012, Rust is rewritten in Rust rather than in OCaml
 - 2014, The "Great Simplification", introducing Ownership/Borrowing instead of Garbage Collection
 - 2015, Rust 1.0 is released
 - 2018, AWS Firecracker was built to power Lambda and Fargate
-- 2019, Async/Await stabilization
-- 2020, Discord rewrote Read states from Go to Rust to eliminate Garbage Collection spikes && Polars project released
+- 2020, Discord rewrote Read states from Go to Rust to eliminate Garbage Collection spikes
 - 2021, Formation of Rust Foundation
 - 2022, Rust merged into Linux Kernel && Cloudflare replaced Nginx with Pingora, proxy written in Rust
 - 2023, Windows 11 got oxidized, with core parts of Windows kernel (specifically win32k.sys) rewritten in Rust
@@ -168,13 +166,66 @@ Rust history over the years
 The History of Rust, by Steve Klabnik
 ===
 
-![image:width:20%](image-2.png)
+![image:width:20%](the_history_of_rust.png)
 
 ```bash +exec +no_background
 echo https://www.youtube.com/watch?v=79PSagCD_AY | qrencode -t utf8i
 ```
 
 <!-- end_slide -->
+
+Typesystem
+===
+
+| Size | Signed Type | Unsigned Type  | Description |
+| :--- | :--- | :--- | :--- |
+| **8-bit** | i8 | u8 | Tiny integers (0 to 255 for unsigned). |
+| **16-bit** | i16 | u16 | Small integers. (0 - 2^16) |
+| **32-bit** | i32 | u32 | The standard default integer in Rust. (if not specified explicitly) |
+| **64-bit** | i64 | u64 | Large integers (64-bit precision). |
+| **128-bit** | i128 | u128 | Massive integers for specialized math. |
+| **Arch-dependent** | isize | `usize` | Matches your CPU pointer size (32 or 64-bit). |
+
+<!-- pause -->
+```rust +exec 
+# fn main() {
+    let ptr_size = std::mem::size_of::<usize>();
+    
+    println!("Pointer size: {} bytes", ptr_size);
+    println!("Architecture: {}-bit", ptr_size * 8);
+# }
+```
+<!-- end_slide -->
+
+
+Typesystem pt. 2
+===
+
+
+![alt text](ADTs.png)
+
+<!-- column_layout: [1,2,1]-->
+<!-- column: 1 -->
+```bash +exec +no_background
+echo https://www.youtube.com/watch?v=z-0-bbc80JM | qrencode -t utf8i 
+```
+
+
+
+<!-- pause -->
+```rust +exec 
+# fn main() {
+    let ptr_size = std::mem::size_of::<usize>();
+    
+    println!("Pointer size: {} bytes", ptr_size);
+    println!("Architecture: {}-bit", ptr_size * 8);
+# }
+```
+<!-- end_slide -->
+
+
+
+
 
 
 
@@ -397,7 +448,7 @@ No nulls!
 
 <!-- column_layout: [1, 4] -->
 <!-- column: 0 -->
-![alt text](image-7.png)
+![alt text](sir-car.png)
 
 
 <!-- column: 1 -->
@@ -560,27 +611,9 @@ Ok, so how did the Cloudflare famously crashed?
 
 <!-- end_slide -->
 
-# 1a. Resources matter
-
-![RustvsCPPmergesortMatrixMul](image.png)
-
-
-Performance evaluation for choosing
-between Rust and C++ - Patrik Karlsson, p.16 2023
-
-https://www.diva-portal.org/smash/get/diva2:1761754/FULLTEXT01.pdf
-
 
 <!-- end_slide -->
 
-# 1b. Resources matter
-
-![RvCPP-I/Otask](image-1.png)
-
-Performance evaluation for choosing
-between Rust and C++ - Patrik Karlsson, p.17 2023
-
-https://www.diva-portal.org/smash/get/diva2:1761754/FULLTEXT01.pdf
 
 
 
