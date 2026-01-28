@@ -24,7 +24,6 @@ Agenda
 - A brief history of Rust
 - Typesystem
 - Memory Safety Core - Ownership, Borrowing, lifetimes
-- Cargo
 - Applience
 
 
@@ -64,7 +63,6 @@ they'll tell you
 <!-- pause -->
 yes its '99, has 300 thousand miles
 
-
 <!-- end_slide -->
 
 
@@ -81,10 +79,13 @@ It also supports object-oriented programming via structs, enums, traits, and met
 
 <!-- pause -->
 
-Rust is noted for enforcing memory safety (i.e., that all references point to valid memory) without a conventional garbage collector;
+Rust is noted for enforcing memory safety (meaning that all references point to valid memory) without a conventional garbage collector;
+
+<!-- pause -->
  
 instead, memory safety errors and data races are prevented by the "**borrow checker**", which tracks the object lifetime of references at compile time."
 
+<!-- pause -->
 ~ Wikipedia
 
 <!-- end_slide -->
@@ -137,7 +138,7 @@ In 2012, in a interview by InfoQ, upon being asked a question: "Why would develo
 
 <!-- pause -->
 
-And they did. 
+And they did.
 
 <!-- end_slide -->
 
@@ -150,7 +151,7 @@ Rust history over the years
 - 2006, Rust is created in Mozilla Labs
 - 2009, Rust is officially incubated by Mozilla
 - 2010, The public reveal at Mozilla Summit
-- 2012, Rust is rewritten in Rust rather than in OCaml
+- 2012, Rust is rewritten in Rust
 - 2014, The "Great Simplification", introducing Ownership/Borrowing instead of Garbage Collection
 - 2015, Rust 1.0 is released
 - 2018, AWS Firecracker was built to power Lambda and Fargate
@@ -166,69 +167,13 @@ Rust history over the years
 The History of Rust, by Steve Klabnik
 ===
 
-![image:width:20%](the_history_of_rust.png)
+![image:width:40%](the_history_of_rust.png)
 
 ```bash +exec +no_background
 echo https://www.youtube.com/watch?v=79PSagCD_AY | qrencode -t utf8i
 ```
 
 <!-- end_slide -->
-
-Typesystem
-===
-
-| Size | Signed Type | Unsigned Type  | Description |
-| :--- | :--- | :--- | :--- |
-| **8-bit** | i8 | u8 | Tiny integers (0 to 255 for unsigned). |
-| **16-bit** | i16 | u16 | Small integers. (0 - 2^16) |
-| **32-bit** | i32 | u32 | The standard default integer in Rust. (if not specified explicitly) |
-| **64-bit** | i64 | u64 | Large integers (64-bit precision). |
-| **128-bit** | i128 | u128 | Massive integers for specialized math. |
-| **Arch-dependent** | isize | `usize` | Matches your CPU pointer size (32 or 64-bit). |
-
-<!-- pause -->
-```rust +exec 
-# fn main() {
-    let ptr_size = std::mem::size_of::<usize>();
-    
-    println!("Pointer size: {} bytes", ptr_size);
-    println!("Architecture: {}-bit", ptr_size * 8);
-# }
-```
-<!-- end_slide -->
-
-
-Typesystem pt. 2
-===
-
-
-![alt text](ADTs.png)
-
-<!-- column_layout: [1,2,1]-->
-<!-- column: 1 -->
-```bash +exec +no_background
-echo https://www.youtube.com/watch?v=z-0-bbc80JM | qrencode -t utf8i 
-```
-
-
-
-<!-- pause -->
-```rust +exec 
-# fn main() {
-    let ptr_size = std::mem::size_of::<usize>();
-    
-    println!("Pointer size: {} bytes", ptr_size);
-    println!("Architecture: {}-bit", ptr_size * 8);
-# }
-```
-<!-- end_slide -->
-
-
-
-
-
-
-
 
 How Rust puts emphasis on type safety?
 ===
@@ -242,9 +187,9 @@ How Rust puts emphasis on type safety?
 6. Fearless Concurrency (Send and Sync traits)
 
 
+
+
 <!-- end_slide -->
-
-
 
 How Rust puts emphasis on type safety? 
 ===
@@ -279,6 +224,121 @@ And as for 6. Fearless Concurrency - it deserves it's own talk
 
 <!-- end_slide -->
 
+Typesystem pt.1
+===
+
+| Size | Signed Type | Unsigned Type  | Description |
+| :--- | :--- | :--- | :--- |
+| **8-bit** | i8 | u8 | Tiny integers (0 to 255 for unsigned). |
+| **16-bit** | i16 | u16 | Small integers. (0 - 2^16) |
+| **32-bit** | i32 | u32 | `The standard default integer in Rust` |
+| **64-bit** | i64 | u64 | Large integers (64-bit precision). |
+| **128-bit** | i128 | u128 | Massive integers for specialized math. |
+| **Arch-dependent** | isize | `usize` | Matches your CPU pointer size (32 or 64-bit). |
+
+<!-- pause -->
+```rust +exec 
+# fn main() {
+    let ptr_size = std::mem::size_of::<usize>();
+    
+    println!("Pointer size: {} bytes", ptr_size);
+    println!("Architecture: {}-bit", ptr_size * 8);
+# }
+```
+<!-- end_slide -->
+
+
+Typesystem pt.2
+===
+
+# Floating-Points Types
+
+| Size | Type | Description |
+| :--- | :--- | :--- |
+| 32-bit | f32 | 32 bit floating point |
+| 64-bit | f64 | 64 bit floating point, `default if not specified otherwise` |
+<!-- pause -->
+
+# Boolean type
+
+| Size | Type | Description |
+| :--- | :--- | :--- |
+| 1-bit | true | It's true! |
+| 1-bit | false | It's false! |
+
+
+<!-- pause -->
+
+<!-- end_slide -->
+Typesystem pt.3
+===
+
+# TUPLE
+```rust +exec 
+# fn main() {
+    let ip_address: (u8, u8, u8, u8) = (127, 0, 0, 1);
+    let (a, b, c, d) = ip_address;
+    println!("Ain't no place like {}.{}.{}.{}", a, b, c, d);
+
+    println!("The first octet of an address - {}", ip_address.0);
+    
+# }
+```
+
+<!-- end_slide -->
+
+Typesystem pt.4
+===
+
+# Array type
+```rust +exec 
+# #[allow(unused)]
+# fn main() {
+    let brtdz = [2,1,1,5];
+    
+    let zip: [u16; 2] = [80,079];
+    
+    let months = [0; 100];
+
+    println!("{:?}", brtdz);
+    println!("{:?}", months);
+# }
+```
+
+<!-- end_slide -->
+
+Typesystem pt.5
+===
+
+
+# Vector
+```rust +exec
+# #[allow(unused)]
+# fn main() {
+
+  let first_valid_vec_of_i32: Vec<i32> = vec![-123, i32::MAX, 123, i32::MIN];
+  let second_valid_vec: Vec<i32> = Vec::new();
+
+  let mut stack: Vec<i32> = vec![0, 1, 3];
+  let popped_from_stack = stack.pop();
+
+  println!("Seems like Vec is just like array in python!, {:?} == {:?}", Some(3), popped_from_stack);
+
+# }
+```
+
+<!-- end_slide -->
+char, String, and string slice types
+===
+| Type | Data Location | Stack Size | Description|
+| :--- | :--- | :--- | :--- |
+| String | Heap | 24 bytes | Growable, UTF-8 encoded text. Used when you need to modify the data |
+| &str | Heap or Binary | 16 bytes | a "slice" or view into the text. The metadata is on stack, but the data is somewhere else |
+| char | Stack | 4 bytes | A single unicode scalar value, like 'c'. Always fixed at 4 bytes |
+| [u8; n] | Stack | n bytes | Fixed size array of bytes |
+| Vec\<u8\> | Heap | 24 bytes | A growable array of raw bytes, often used for non-textual data or manual encoding |
+
+<!-- end_slide -->
 
 Functions must take in typed parameters and return type. 
 ===
@@ -348,8 +408,6 @@ Ownership and Borrowing
 
 ## Well, this or Garbage Collection
 
-
-
 <!-- pause -->
 
 # But it works for some types, right? Like i32, u8, &str (string slice)
@@ -378,9 +436,10 @@ graph TD
 
 
 <!-- pause -->
-For types like i32, the assignment creates a completely independent twin.
+For types types of static size, the assignment creates a completely independent twin. 
 Data on stack is fixed size, and duplicating it is faster than managing a pointer.
 
+They implement the `Sized` and `Copy` trait, so on assignment (let a = b;), the value is Copied.
 
 <!-- pause -->
 ```mermaid +render
@@ -409,6 +468,72 @@ If both owned the data, they would both try to "drop" (free) that heap memory wh
 
 <!-- pause -->
 (Fun fact - NASA dissalows using Heap allocated memory)
+
+<!-- end_slide -->
+Ownership and Borrowing
+===
+```rust +exec
+fn main() {
+    let mut s1 = String::from("hello");
+
+    let r1 = &s1; // Immutable borrow
+    let r2 = &s1; // Second immutable borrow (OK!)
+    
+    // let r3 = &mut s1; // ERROR: Cannot borrow as mutable while immutable borrows exist.
+
+    println!("{} and {}", r1, r2); 
+    // r1 and r2 "die" here after their last use.
+
+    let r3 = &mut s1; // OK: No other active borrows!
+    r3.push_str(", world");
+}
+```
+
+<!-- end_slide -->
+Lifetimes pt.1
+===
+
+Imagine a function that compares two borrowed string slices and returns the longer one.
+
+```rust +exec
+# fn main() {
+fn longest(x: &str, y: &str) -> &str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+# }
+```
+When you return a reference from a function, Rust needs to guarantee that the reference doesn't point to "garbage" memory.
+
+How to decide which one?
+
+<!-- end_slide -->
+
+
+Lifetimes pt.2
+===
+
+We just tell compiler that both lifetimes are valid by the time of return!
+
+```rust +exec
+# fn main() {
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+let first = "I'm learning";
+let second = "Rust";
+
+println!("{}!", longest(first, second));
+
+# }
+```
 
 <!-- end_slide -->
 
@@ -484,27 +609,6 @@ struct Pizza {
   sauce: Option<Sauce>,
   veggies: Option<Veggie>
 }
-
-struct MeatIngridient(String)
-
-
-enum Pizzeria {
-  KUBRYK,
-  PIRATTO,
-  SOPRANO,
-  DOLCEVITA,
-  PARMA
-}
-
-
-enum Sauce {
-  BIANCO,
-  ROSSO,
-  WLOCLAWEK,
-}
-
-struct Veggie(String)
-
 ```
 
 
@@ -523,8 +627,6 @@ struct Pizza {
 }
 
 struct MeatIngridient(String)
-
-
 ```
 
 
@@ -551,12 +653,11 @@ enum Pizzeria {
   DOLCEVITA,
   PARMA
 }
-
 ```
 
 
 <!-- end_slide -->
-Let's make a pizza - source please?
+Let's make a pizza - other ingridients
 ===
 
 ```rust
@@ -587,92 +688,301 @@ enum Sauce {
 struct Veggie(String)
 
 ```
-
-
-
 <!-- end_slide -->
 
-Ok, so how did the Cloudflare famously crashed?
+Let's order a pizza
 ===
 
+```rust +exec
+# #[allow(unused)]
+# fn main() {
+# #[derive(Debug)]
+# struct Pizza {
+#  source: Pizzeria,
+#  cheese: String,
+#  meat: Option<Vec<MeatIngridient>>,
+#  sauce: Option<Sauce>,
+#  veggies: Option<Veggie>
+# }
+# #[derive(Debug)]
+# struct MeatIngridient(String);
+# #[derive(Debug)]
+# enum Pizzeria {
+#  KUBRYK,
+#  PIRATTO,
+#  SOPRANO,
+#  DOLCEVITA,
+#  PARMA
+# }
+# #[derive(PartialEq, Debug)]
+# enum Sauce {
+#  BIANCO,
+#  ROSSO,
+#  WLOCLAWEK,
+# }
+# #[derive(PartialEq, Debug)]
+# struct Veggie(String);
+ 
+ let source: Pizzeria = Pizzeria::SOPRANO;
+ let cheese: String = "Mozzarella".to_string();
+ 
+ let meat: Vec<MeatIngridient> = vec![MeatIngridient("ham".to_string())];
+ 
+ let sauce = Some(Sauce::ROSSO);
+ let veggies = Some(Veggie("Rocket".to_string()));
+
+ let my_wonderful_pizza: Pizza = if sauce.as_ref().is_some_and(|s| *s == Sauce::ROSSO) {
+   Pizza {
+    source,
+    cheese,
+    meat: Some(meat),
+    sauce,
+    veggies
+  }
+ } else {
+  Pizza {
+    source: Pizzeria::DOLCEVITA,
+    cheese,
+    meat: Some(vec![MeatIngridient("Ham".to_string()), MeatIngridient("Ham".to_string())]),
+    sauce: Some(Sauce::WLOCLAWEK),
+    veggies: Some(Veggie("ANANAS".to_string())),
+  }
+ };
+ 
+ 
+
+ println!("{:?}", my_wonderful_pizza);
+
+
+# }
+```
+
+<!-- end_slide -->
+
+More on the type system
+===
+
+
+![alt text](ADTs.png)
+
+<!-- column_layout: [1,2,1]-->
+<!-- column: 1 -->
+```bash +exec +no_background
+echo https://www.youtube.com/watch?v=z-0-bbc80JM | qrencode -t utf8i 
+```
+
+<!-- end_slide -->
+
+
+Applience
+===
+
+<!-- pause -->
+Async:
+<!-- incremental_lists: true -->
+- **Tokio**, de-facto standard async runtime and a "language inside rust", a true gem of Rust. Used by AWS, Discord, Cloudflare.
+- **smol**, small, fast, and easy to understand. Great for CLI tooling.
+- **Embassy**, primary choice for async on embedded devices like STM32 and ESP32. Zero-cost async for bare metal
+
+<!-- pause -->
+Web & Networking:
+<!-- incremental_lists: true -->
+- **Axum**, Web framework, maintained by Tokio team. Uses `tower` middleware - I would name it FastAPI for Rust (but faster)
+- **Actix-web**, Actor based framework that consistently tops benchmarks
+- **Hyper**, a fast, correct HTTP implementation. Rarely used explicitly, but it almost powers every web library on this list
+
+<!-- pause -->
+Databases & Data Handling
+<!-- incremental_lists: true -->
+- **SQLx**, my weapon of choice. Pure Rust, async, and compile time checked SQL queries. Supports Postgres, MySQL and SQLite without heavy ORM.
+- **SeaORM**, built on top of SQLx, for Django-like or TypeORM enjoyers
+- **MongoDB**, official, fully async and highly performant mongo driver 
+
+
+<!-- end_slide -->
+
+Applience pt.2
+===
+in 2026, the Data and ML landscape is shifting from experimental to high-performance alternative.
+
+While python is the choice for experimentation, Rust shines in data intensive infrastructure and production.
+<!-- pause -->
+Data engineering (BIG DATA):
+<!-- incremental_lists: true -->
+- **Polars**, so called "panda killer". Multi threaded by default and significantly faster than pandas. Lazy API for query optimalization (thanks Apache Spark)
+- **DataFusion**, a powerful SQL query engine. Uses Apache Arrow (also written in Rust) to run queries against Parquet, CSV and JSON in lightning speed.
+- **Delta-rs**, a native Rust interface for Delta Lake. Essential for building Lakehouse architectures without JVM/Spark.
+- **apache-arrow**, a backbone of DataFusion. Provides a standardized way to represent columnar data `in memory` for zero-copy sharing.
+
+<!-- pause -->
+Machine Learning:
+<!-- incremental_lists: true -->
+- **burn**, PyTorch-like DL framework that can target CPU, `GPU` (WGPU, CUDA), and even WebAssembly (federated learning!)
+- **candle**, developed by HuggingFace. The "lightweight" ML framework focused on making deployment and serverless inference easy (used heavily for LLMs)
+- **limfa**, the scikit-learn of rust
+- **rch-rs**, a high level wrappers of C++ libtorch. Allows you to run existing PyTorch models in Rust environment (tested it, works wonderful)
+
+<!-- end_slide -->
+
+Applience pt.3
+===
+<!-- pause -->
+WebAssembly and fullstack
+<!-- incremental_lists: true -->
+- Leptos, a reactive (like SolidJS) full stack framework that feels like React but runs at native speed
+- Dioxus, Multi-platform UI. Write once - run everywhere. Uses React like virtual DOM to target Web, Desktop, and Mobile
+- Yew, the long standing veteran, also component based, and very stable for enterprise Wasm apps.
+- Wasm-bindgen, the bridge between Rust and JS. It handles the "dirty work" of passing strings and objects across the Wasm boundary.
+
+<!-- pause -->
+CLI
+<!-- incremental_lists: true -->
+- Clap, Command line parser. Argparse of Rust.
+- Ratatui, Terminal User Interface application, lately enabled to compile bare metal. The future of embedded device development
+- Tauri, which uses system's native webview and a Rust backend to create apps that are 10x smaller than discord or slack.
+
+<!-- end_slide -->
+
+Tools you might not know are written in Rust, but use them in your work
+===
+
+<!-- pause -->
+For Python enjoyers
+
+| Tool | Replaces | Why |
+| :--- | :--- | :--- |
+| uv | pip, poetry, virtualenv | Install packages 10-100x faster than pip by parallelizing downloads and resolution without Python overhead |
+| Ruff | Flake8 | Linter/formatter that processes code on every keystroke |
+| ty | mypy, Pyright, Pylanc | Blazingly fast type checker and Language Server (LSP). Uses an incremental architecture to give real-time feedback 10–100x faster than mypy. |
+| polars | padas | Apache arrow + Rust concurrency |
+| pydantic | pydantic | the core validation logic was moved to pydantic-core, making it 17x faster |
+| cryptography | cryptography | (used by requests, ssh) has migrated its low-level math to Rust for memory safety
+
+
+<!-- pause -->
+
+<!-- new_line -->
+<!-- new_line -->
+
+<!-- new_line -->
+
+For JS enjoyers
+
+| Tool | Replaces | Why |
+| :--- | :--- | :--- |
+| SWC | Babel | A compiler that is ~20x faster than Babel, powers Next.js and Deno |
+| Turbopack | webpack | A successor to webpack |
+| biome | prettier + ESLint | single binary that formats and lints JS/TS projects instantly |
+| Tauri | Electron | Already mentioned, but the installers now weight ~3MB instead of ~100MB |
+
+
+<!-- new_line -->
+<!-- new_line -->
+
+<!-- new_line -->
+
+For Linux enjoyers
+
+| Tool | Replaces | Why |
+| :--- | :--- | :--- |
+| ripgrep (rg) | grep | (rg)	Faster searching that respects .gitignore automatically. Built into VS Code. |
+| eza | ls | adds colors, git status dots and icons to file listings |
+| bat | cat | Adds syntax highlighting and git diffs to file output |
+| zoxide (z) | cd | Remembers your most used directories. You type z pro and it jumps to /home/user/projects |
+| Autin | history | Replaces your shell history with a searchable, syncable SQLite database |
+
+<!-- end_slide -->
+
+Apache Iggy
+===
+
+I wouldn't be myself if I didn't mention Apache Iggy. Written by Piotr Gankiewicz, is a high-performance, persistent message streaming platform written in Rust.
+![alt text](iggy.png)
+
+
+<!-- new_line -->
+I highly suggest familiarizing yourself with this platform, I would name it a Kafka killer.
+
+
+
+
+
+<!-- end_slide -->
+
+Apache Iggy
+===
+
+![alt text](iggy-2.png)
+
+
+```bash +exec +no_background
+echo https://www.youtube.com/watch?v=GkV306PyvqM | qrencode -t utf8i
 ```
 
 
+<!-- new_line -->
+
+
+
+
+<!-- end_slide -->
+Cargo
+===
+![alt text](wojciech.png)
+```bash +exec +no_background
+echo https://www.youtube.com/watch?v=wQ_OrmE_AEY | qrencode -t utf8i
 ```
 
-<!-- end_slide -->
-
-# 1. Why write in Rust when you can achieve the same in Python?
-
-1. Resources matter
-2. Upfront best practices enforced by compiler
-3. Community
-
 
 <!-- end_slide -->
+So where to start my Rust journey?
+==
+
+# The book
+<!-- pause -->
+
+rustup doc --book
+
+or
+
+https://doc.rust-lang.org/book/
+
+<!-- pause -->
+
+# Rustlings
+
+https://rustlings.rust-lang.org/
 
 
-<!-- end_slide -->
+<!-- pause -->
+
+# Get inspired
+<!-- incremental_lists: true -->
+- No Boilerplate
+- Code To The Moon 
+- Let's Get Rusty
+- The Rust Programming Language
+
+# Allow compiler to be your friend
+
+<!-- pause -->
+
+# Few tips
+
+<!-- incremental_lists: true -->
+- Go through the book, get bored/excited with theory, do some rustlings
+- Read the documentation - the answers are there
+- Ensure the LSP has type hightlighting
+
+![alt text](types.png)
 
 
-
-
-
-<!-- end_slide -->
-
-# 2. Why write in Rust when you can achieve the same in C?
-
-1. Compiler support
-2. Upfront best practices enforced by compiler
-3. Cargo
-
-
-<!-- end_slide -->
-
-# 3. You mentioned upfront best practices enforced by compiler, what exactly do you mean bud?
-
-- Structs and enums are first class citizens of Rust
-- Explicit type checks
-- Ownership model
-- RAII
-- data-race-free concurrency
-- Option`<T>`, Result`<T, E>`
-
-
-<!-- end_slide -->
-
-#5. Why compiling is worth it and why Rust is superb at it?
-
-1. compiled software is faster - It's just binary code ready for your computer to interpret, and in rust example - you can set optimization levels from 0 to 3.
-2. When you run .py script - you just execute it using python interepreter, and if you were to run this script on another device, you would have to make sure that the other device has the same or higher version of python with the same requirements
-3. Operating systems have different ways to acquire memory, play a sound, or print something on screen. These instructions are SYSCALLs, and if you ever wondered how can you use software specific for Windows - "wine" translates Windows Syscalss to Linux/Unix ones.
-
-Therefore, if you compile executable for linux, you won't be able to run it on Windows machine!
-
-
-<!-- end_slide -->
-
-#6. Enter cargo
-
-1. It is package manager, toolchain manager, compiler CLI, documentation tool and testing suite.
-2. Imagine requirements.txt but with project metadata and workspace manager.
-3. Cargo also allows you to run, check (compilation without running the code), test and much, much more. There's a whole book about cargo.
-4. Cargo let's you install toolchains - If you're on linux, you can specify windows with an ARM processor as compilation target. You can copy/send the executable and it will run smoothly on specified machine, as long as it's exact toolchain for the system.
-5. Wonderful compiler errors.
+<!-- pause -->
+# Experiment
 
 
 <!-- end_slide -->
 
-#7. Enough with the yapping, explain the ownership please.
-
-Rust started of after one of Mozilla employees had it enough with broken elevator, which was crashing due to memory allocation bug. The idea of memory-safe language was born.
-
-Your computer has two ways to store variables.
-
-Stack and Heap.
-
-Stack is a "plate-like structure" that allows for Last-In First-Out access, while
-Heap has "just put it somewhere idc" structure. 
-
-Languages like Python doesn't bother the developers with deciding where to store the variables, but if you were to develop something in C - you would.
-
+<!-- jump_to_middle -->
+Thank you
+===
