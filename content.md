@@ -24,7 +24,7 @@ Agenda
 - A brief history of Rust
 - Typesystem
 - Memory Safety Core - Ownership, Borrowing, lifetimes
-- Applience
+- Appliences
 
 
 <!-- end_slide -->
@@ -263,8 +263,8 @@ Typesystem pt.2
 
 | Size | Type | Description |
 | :--- | :--- | :--- |
-| 1-bit | true | It's true! |
-| 1-bit | false | It's false! |
+| 1 byte | true | It's true! |
+| 1 byte | false | It's false! |
 
 
 <!-- pause -->
@@ -774,7 +774,7 @@ echo https://www.youtube.com/watch?v=z-0-bbc80JM | qrencode -t utf8i
 <!-- end_slide -->
 
 
-Applience
+Appliences
 ===
 
 <!-- pause -->
@@ -801,15 +801,15 @@ Databases & Data Handling
 
 <!-- end_slide -->
 
-Applience pt.2
+Appliences pt.2
 ===
-in 2026, the Data and ML landscape is shifting from experimental to high-performance alternative.
+Data and ML landscape is shifting from experimental to high-performance alternative.
 
 While python is the choice for experimentation, Rust shines in data intensive infrastructure and production.
 <!-- pause -->
-Data engineering (BIG DATA):
+Data engineering:
 <!-- incremental_lists: true -->
-- **Polars**, so called "panda killer". Multi threaded by default and significantly faster than pandas. Lazy API for query optimalization (thanks Apache Spark)
+- **Polars**, so called "pandas killer". Multi threaded by default and significantly faster than pandas. Lazy API for query optimalization (thanks Apache Spark)
 - **DataFusion**, a powerful SQL query engine. Uses Apache Arrow (also written in Rust) to run queries against Parquet, CSV and JSON in lightning speed.
 - **Delta-rs**, a native Rust interface for Delta Lake. Essential for building Lakehouse architectures without JVM/Spark.
 - **apache-arrow**, a backbone of DataFusion. Provides a standardized way to represent columnar data `in memory` for zero-copy sharing.
@@ -820,11 +820,11 @@ Machine Learning:
 - **burn**, PyTorch-like DL framework that can target CPU, `GPU` (WGPU, CUDA), and even WebAssembly (federated learning!)
 - **candle**, developed by HuggingFace. The "lightweight" ML framework focused on making deployment and serverless inference easy (used heavily for LLMs)
 - **limfa**, the scikit-learn of rust
-- **rch-rs**, a high level wrappers of C++ libtorch. Allows you to run existing PyTorch models in Rust environment (tested it, works wonderful)
+- **tch-rs**, a high level wrappers of C++ libtorch. Allows you to run existing PyTorch models in Rust environment (tested it, works wonderful)
 
 <!-- end_slide -->
 
-Applience pt.3
+Appliences pt.3
 ===
 <!-- pause -->
 WebAssembly and fullstack
@@ -853,8 +853,8 @@ For Python enjoyers
 | :--- | :--- | :--- |
 | uv | pip, poetry, virtualenv | Install packages 10-100x faster than pip by parallelizing downloads and resolution without Python overhead |
 | Ruff | Flake8 | Linter/formatter that processes code on every keystroke |
-| ty | mypy, Pyright, Pylanc | Blazingly fast type checker and Language Server (LSP). Uses an incremental architecture to give real-time feedback 10–100x faster than mypy. |
-| polars | padas | Apache arrow + Rust concurrency |
+| ty | mypy, Pyright, Pylance | Blazingly fast type checker and Language Server (LSP). Uses an incremental architecture to give real-time feedback 10–100x faster than mypy. |
+| polars | pandas | Apache arrow + Rust concurrency |
 | pydantic | pydantic | the core validation logic was moved to pydantic-core, making it 17x faster |
 | cryptography | cryptography | (used by requests, ssh) has migrated its low-level math to Rust for memory safety
 
@@ -889,7 +889,7 @@ For Linux enjoyers
 | eza | ls | adds colors, git status dots and icons to file listings |
 | bat | cat | Adds syntax highlighting and git diffs to file output |
 | zoxide (z) | cd | Remembers your most used directories. You type z pro and it jumps to /home/user/projects |
-| Autin | history | Replaces your shell history with a searchable, syncable SQLite database |
+| Atuin | history | Replaces your shell history with a searchable, syncable SQLite database |
 
 <!-- end_slide -->
 
