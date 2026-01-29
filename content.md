@@ -1256,6 +1256,8 @@ Please, enough with the code, why should I care?
 -->
 
 <!-- end_slide -->
+Agenda 
+===
 <!-- font_size: 2 -->
 
 - A brief history of Rust ✅
