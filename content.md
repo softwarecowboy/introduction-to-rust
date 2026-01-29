@@ -18,29 +18,79 @@ theme:
           foreground: red
 ---
 
+
+<!-- jump_to_middle -->
+Foreword
+===
+
+<!-- speaker_note: 
+
+ First ever meetup that I attended was eighth PyData Bydgoszcz four years ago
+
+ This event showed me that meetups like these are about people, about connecting,
+ sharing experiences, knowledge and about community.
+
+ Ever since, I wanted to take part in such experience, and here we are, with my friend Wojtek Kargul,
+ speaking about technology that changes the world into a safer, better place.
+
+ May I ask for a round of applause for Patryk and Wojciech from BydgoszczIT 
+ for making this meeting happen and for continuing the good work.
+
+ I'm Rafał, and this is my Introduction to Rust.
+
+ -->
+ <!-- end_slide -->
+
 Agenda
 ===
 
+<!-- speaker_note: 
+
+  A brief history of Rust
+  
+  Typesystem
+  
+  Memory Safety Core - Ownership, Borrowing, Lifetimes
+  
+  Heap and Stack
+  
+  Appliences
+  
+  How to start
+-->
+
+
+<!-- alignment: center -->
+<!-- font_size: 2 -->
 - A brief history of Rust
 - Typesystem
 - Memory Safety Core - Ownership, Borrowing, Lifetimes
-- Heap and Stack (in short)
+- Heap and Stack
 - Appliences
 - How to start
+
+
 
 <!-- end_slide -->
 
 
 Who am I
 ===
+
+
+
+
+
+
+<!-- pause -->
 <!-- column_layout: [2, 1] -->
 <!-- column: 0 -->
 ![image:width:20%](images/face.png)
 Rafał Draws, MSc
 <!-- pause -->
-- SDE at Nordea Bank 
+- Software Engineer at Nordea Bank 
 <!-- pause -->
-- Rust Poland co-founder
+- Rust Poland founder
 <!-- pause -->
 - Music nerd 
 <!-- pause -->
@@ -61,13 +111,14 @@ they'll tell you
 
 
 <!-- pause -->
-yes its '99, has 300 thousand miles
+yes its '99, and has 300 thousand miles
 
 <!-- end_slide -->
 
 
 What is Rust?
 ===
+
 
 "Rust is a general-purpose programming language. It is noted for its emphasis on performance, type safety, concurrency, and memory safety. 
 <!-- pause -->
@@ -90,26 +141,24 @@ instead, memory safety errors and data races are prevented by the "**borrow chec
 
 <!-- end_slide -->
 
-
-<!-- column_layout: [1, 2, 1] -->
-
-<!-- column: 1-->
 But why Rust?
 ===
+
+
 
 Canadian software developer Graydon Hoare, created Rust in 2006 while working at Mozilla as a side project.
 
 He named the language after a specific type of fungi that is "over-engineered for survival".
 
-
+<!-- column_layout: [1, 1, 1] -->
 <!-- column: 0-->
+<!-- jump_to_middle -->
 ![alt text](images/rust-1.png)
 <!-- column: 1-->
-<!-- new_line -->
-<!-- new_line -->
-![alt text](images/rust-2.png)
+<!-- jump_to_middle -->
+![image:width:100%](images/rust-2.png)
 <!-- column: 2 -->
-
+<!-- jump_to_middle -->
 ![alt text](images/rust-3.png)
 <!-- end_slide -->
 
@@ -118,31 +167,39 @@ He named the language after a specific type of fungi that is "over-engineered fo
 A brief history of Rust
 ===
 
-Rust interpreter was first written in OCaml, and the language was inspired by programming languages from 1970-1990s, such as: CLU, BETA, Mesa, NIL, Erlang, Newsqueak, Napier, Hermes, Sather, Limbo and Alef.
-
-<!-- speaker_note: 
-
-Hoare described it as "technology from the past come to save the future from itself".
 
 
-In 2012, in a interview by InfoQ, upon being asked a question: "Why would developers choose Rust", Graydon answered:
- -->
+<!-- speaker_note: In 2012, in a interview by InfoQ, upon being asked a question Why would developers choose Rust, Graydon answered -->
 
-<!-- new_line -->
+Rust interpreter was first written in OCaml, and the language was inspired by programming languages from 1970-1990s, such as: CLU, BETA, Mesa, etc.
+
+<!-- pause -->
+
+
+Hoare described Rust as 'technology from the past come to save the future from itself'
+
+
 <!-- new_line -->
 
 <!-- pause -->
 <!-- column_layout: [1, 3] -->
 <!-- column: 0 -->
-![alt text](images/mr_hoare.png)
+![image:width:100%](images/mr_hoare.png)
 <!-- column: 1 -->
-- "*Our target audience is "frustrated C++ developers". I mean, that's _us_. So if you are in a similar situation we're in, repeatedly finding yourself forced to pick C++ for systems-level work due to its performance and deployment characteristics, but would like something safer and less painful, we hope we can provide that.*"
+*"Our target audience is "frustrated C++ developers". I mean, that's _us_.*
+
+
+*So if you are in a similar situation we're in, repeatedly finding yourself forced to pick C++ for systems-level work due to its performance and deployment characteristics,*
+*but would like something safer and less painful,*
+
+***we hope we can provide that.***"
 
 <!-- pause -->
 
 And they did.
 
 <!-- end_slide -->
+
 
 
 Rust history over the years
@@ -172,60 +229,32 @@ The History of Rust, by Steve Klabnik
 ===
 ![image:width:50%](images/history-of-rust.png)
 
-```bash +exec +no_background
+```bash +exec +line_numbers +no_background
 echo https://www.youtube.com/watch?v=79PSagCD_AY | qrencode -t utf8i
 ```
 
 <!-- end_slide -->
-
-How Rust puts emphasis on type safety?
+What's next?
 ===
 
+<!-- alignment: center -->
+<!-- font_size: 2 -->
 
-1. Functions must take in typed parameters and return type.
-2. Ownership, Borrowing and Lifetimes
-3. No nulls (instead Option\<T\> and Result\<T, E\>)
-4. Immutability by default
-5. Exhaustive pattern matching
-6. Fearless Concurrency (Send and Sync traits)
-
-
+- A brief history of Rust ✅
+- Typesystem 
+- Memory Safety Core - Ownership, Borrowing, Lifetimes 
+- Heap and Stack 
+- Appliences
+- How to start
 
 
 <!-- end_slide -->
 
-How Rust puts emphasis on type safety? 
+
+
+Primitive types - integer
 ===
-
-
-1. <span style="color: #00ff11">Functions must take in typed parameters and return type.
-2. <span style="color: #00ff11">Ownership, Borrowing and Lifetimes
-3. <span style="color: #00ff11">No nulls (instead Option\<T\> and Result\<T, E\>)</span>
-4. Immutability by default 
-5. <span style="color: #00ff11">Exhaustive pattern matching</span>
-6. Fearless Concurrency (Send and Sync traits)
-
-<!-- pause -->
-Mutability must be defined explicitly with every variable
-
-<!-- pause -->
-
-```rust
-# #[allow(unused)]
-# fn main() {
-  let immutable_string: String = "This is immutable String".to_string();
-
-  let mut mutable_string_buffer = "This is mutable".to_string();
-# }
-```
-
-<!-- pause -->
-And as for 6. Fearless Concurrency - it deserves it's own talk
-
-<!-- end_slide -->
-
-Typesystem - primitive types
-===
+<!-- alignment: center -->
 
 | Size | Signed Type | Unsigned Type  | Description |
 | :--- | :--- | :--- | :--- |
@@ -237,7 +266,7 @@ Typesystem - primitive types
 | **Arch-dependent** | isize | `usize` | Matches your CPU pointer size (32 or 64-bit). |
 
 <!-- pause -->
-```rust +exec 
+```rust +exec +line_numbers
 # fn main() {
     let ptr_size = std::mem::size_of::<usize>();
     
@@ -247,8 +276,9 @@ Typesystem - primitive types
 <!-- end_slide -->
 
 
-Typesystem pt.2
+Primitive types - floats, bools, char
 ===
+<!-- alignment: center -->
 
 # Floating-Points Types
 
@@ -258,22 +288,28 @@ Typesystem pt.2
 | 64-bit | f64 | 64 bit floating point, `default if not specified otherwise` |
 <!-- pause -->
 
-# Boolean type
+# bool type
 
-| Size | Type | Description |
+| Size | Variant | Description |
 | :--- | :--- | :--- |
 | 1 byte | true | It's true! |
 | 1 byte | false | It's false! |
 
-
 <!-- pause -->
 
+# char type
+
+```rust
+  let charek: char = 'c'; // single ticks!
+```
+
+
 <!-- end_slide -->
-Typesystem pt.3
+Compound types - tuple
 ===
 
-# TUPLE
-```rust +exec 
+# tuple
+```rust +exec +line_numbers
 # fn main() {
     let ip_address: (u8, u8, u8, u8) = (127, 0, 0, 1);
     let (a, b, c, d) = ip_address;
@@ -281,17 +317,16 @@ Typesystem pt.3
     println!("Ain't no place like {}.{}.{}.{}", a, b, c, d);
 
     println!("The first octet of an address - {}", ip_address.0);
-    
 # }
 ```
 
 <!-- end_slide -->
 
-Typesystem pt.4
+Compound types - array
 ===
 
 # Array type
-```rust +exec 
+```rust +exec +line_numbers
 # #[allow(unused)]
 # fn main() {
     let brtdz = [2,1,1,5];
@@ -304,19 +339,17 @@ Typesystem pt.4
 
 <!-- end_slide -->
 
-Typesystem pt.5
+Compound types - Vec
 ===
 
-<!-- speaker_note: 
-Vector is heap allocated. It has a set of functions, and is very convinient way to store data.
+<!-- speaker_note: |
+    Vector is heap allocated. It has a set of functions, and is very convinient way to store data.
 
-Fun fact, heap allocated data is not permitted in NASA hardware, so no Vec's in space :(
-
-
+    Fun fact, heap allocated data is not permitted in NASA hardware, so no Vec's in space
  -->
 
 # Vector
-```rust +exec
+```rust +exec +line_numbers
 # #[allow(unused)]
 # fn main() {
 
@@ -326,7 +359,8 @@ Fun fact, heap allocated data is not permitted in NASA hardware, so no Vec's in 
   let mut stack: Vec<i32> = vec![0, 1, 3];
   let popped_from_stack = stack.pop();
 
-  println!("Seems like Vec is just like array in python! {:?} == {:?}", 3, popped_from_stack.unwrap());
+  println!("Seems like Vec is just like array in python! {} == {}", 
+            3, popped_from_stack.unwrap());
 
 # }
 ```
@@ -334,32 +368,40 @@ Fun fact, heap allocated data is not permitted in NASA hardware, so no Vec's in 
 <!-- end_slide -->
 char, String, and string slice types
 ===
-| Type | Stack Size | Description|
-| :--- |  :--- | :--- |
-| String |  24 bytes | Growable, UTF-8 encoded text. Used when you need to modify the data |
-| &str |  16 bytes | a "slice" or view into the text. The metadata is on stack, but the data is somewhere else |
-| char |  4 bytes | A single unicode scalar value, like 'c'. Always fixed at 4 bytes |
-| [u8; `n`] | `n` bytes | Fixed size array of bytes |
-| Vec\<u8\> | 24 bytes | A growable array of raw bytes, often used for non-textual data or manual encoding |
 
-```rust +exec
+<!-- speaker_note: |
+    See that String type and Vec<u8> is growable?
+    it's becase they residue at Heap memory, we'll get to that later
+
+-->
+<!-- alignment: center -->
+
+| Type | Size | Description|
+| :--- |  :--- | :--- |
+| String |  24 bytes | growable, UTF-8 encoded text |
+| &str | 16 bytes | a "slice" or view into the text |
+| char | 4 bytes | a UTF-8 encoded scalar (f.e. U+1F680) |
+| [u8; `n`] | `n` bytes | fixed size array of bytes |
+| Vec\<u8\> | 24 bytes | growable array of raw bytes, often used for non-textual data or manual encoding |
+
+```rust +exec +line_numbers
 # #[allow(unused)]
 # fn main() {
-
-  let s = String::from("I LOVE LANGUAGES WITH MULTIPLE STRING TYPES");
+  let s = String::from("Hi🚀");
   let view: &str = &s;
   let char: char = s.chars().nth(2).unwrap();
-  let bytes_array: &[u8] = &s.as_bytes()[0..5];
-  let u8_vec: Vec<u8> = s.as_bytes().to_vec();
+  let emoji: &[u8] = &s.as_bytes()[2..(view.len())];
+  let bytes_vec: Vec<u8> = s.as_bytes().to_vec();
 
-  println!("s: {:?}\nview: {:?}\nchar: {:?}\nbytes_array: {:?}\nu8_vec: {:?}\n", s, view, char, bytes_array, u8_vec);
+  println!("s: {:?}\nview: {:?}\nchar: {:?}\nemoji: {:?}\nbytes_vec: {:?}\n", s, view, char, emoji, bytes_vec);
 
 # }
 ```
 
 <!-- end_slide -->
+<!-- alignment: center -->
 
-Functions must take in typed parameters and return type. 
+Functions must take in typed parameters
 ===
 
 This won't compile:
@@ -377,8 +419,10 @@ fn eat_pizza(pizza) {
 ```
 
 <!-- end_slide -->
-Functions must take in typed parameters and have return type (unless they don't return anything). 
+
+Functions must take in typed parameters 
 ===
+<!-- alignment: center -->
 
 This will compile:
 ```rust +exec
@@ -386,7 +430,6 @@ This will compile:
 # struct Pizza<'a> {
 #  source: &'a str
 # }
-
 fn eat_pizza(pizza: Pizza) -> &'static str {
   if pizza.source == "piratto" {
     return "mmm yummy"
@@ -407,6 +450,8 @@ fn eat_pizza(pizza: Pizza) -> &'static str {
 There are no nulls in Rust
 ===
 <!-- pause -->
+<!-- alignment: center -->
+
 except for std::ptr::null() but we like to pretend that there aren't :) 
 
 <!-- end_slide -->
@@ -439,17 +484,16 @@ So how do we omit nulls?
 
 ```rust
 Option<T>
-Result<Ok, Err>
+or
+Result<T, Err>
 ```
+<!-- alignment: center -->
 
 Option of type \<T\> has two wariants, either Some(T) or None.
 
-For example, if you're creating a pizza structure, you could do it this way:
-
-
 <!-- end_slide -->
 
-Let's make a pizza - inital struct
+Structs and Option\<T\> intro
 ===
 
 ```rust
@@ -468,7 +512,7 @@ struct Pizza {
 Let's make a pizza - throw some meat
 ===
 
-```rust
+```rust 
 struct Pizza {
   source: Pizzeria,
   cheese: String,
@@ -542,7 +586,7 @@ struct Veggie(String)
 Let's make a pizza - specyfing values
 ===
 
-```rust +exec
+```rust
 # #[allow(unused)]
 # fn main() {
 # #[derive(Debug)]
@@ -570,18 +614,16 @@ Let's make a pizza - specyfing values
 # }
 # #[derive(PartialEq, Debug)]
 # struct Veggie(String);
- 
  let source: Pizzeria = Pizzeria::SOPRANO;
+
  let cheese: String = "Mozzarella".to_string();
  
  let meat: Vec<MeatIngridient> = vec![MeatIngridient("ham".to_string())];
  
  let sauce: Option<Sauce> = Some(Sauce::ROSSO);
- let no_sauce: Option<Sauce> = None; 
+ let no_sauce: Option<Sauce> = None;
 
  let veggies: Option<Veggie> = Some(Veggie("rocket".to_string()));
-
- 
 # }
 ```
 
@@ -590,7 +632,7 @@ Let's make a pizza - specyfing values
 Let's order a pizza
 ===
 
-```rust +exec
+```rust +exec +line_numbers
 # #[allow(unused)]
 # fn main() {
 # #[derive(Debug)]
@@ -642,8 +684,8 @@ Let's order a pizza
 
 Result\<T, E\>
 ===
-<!-- speaker_note: 
-In Python, you have try except block
+<!-- speaker_note: |
+    In Python, you have try except block
  -->
 <!-- alignment: center -->
 (valid python code)
@@ -653,35 +695,36 @@ try:
 except Exception as e:
   print(f"Oh no, the function crashed :( bohoo good luck now {e}")
 finally:
-  whatever_it_works_either_way(data)
+  whatever_dude_it_works_either_way(data)
 ```
 
 <!-- end_slide -->
 
 Result\<T, E\> - NO NULL SURPRISES
 ===
-<!-- speaker_note: 
-In Rust, we work kinda different
+<!-- speaker_note: |
+    1. Change the size
+    2. In Rust we opt for excellence, so we don't get surprised by Errors. If one is to appear,
+    It must be handled
+
  -->
 <!-- alignment: center -->
 
 <!-- pause -->
-```rust +exec
+```rust +exec +line_numbers
+# #[allow(unused)]
 enum ConfigError {
     FileNotFound,
     EmptyFile,
 }
                            // Either Ok(String) or Err(ConfigError)
 fn read_token(filename: &str) -> Result<String, ConfigError> {
-    if filename != "config.txt" {
-        return Err(ConfigError::FileNotFound);
-    }    
+    println!("reading {}", filename);
     let contents = ""; // let's pretend the file is empty
     if contents.is_empty() {
-        return Err(ConfigError::EmptyFile);
+        return Err(ConfigError::EmptyFile); // explicit return 
     }
-
-    Ok("secret_token_42".to_string())
+    Ok("secret_token_42".to_string()) // We don't need to put return here
 }
 
 fn main() {
@@ -704,15 +747,15 @@ Elephant in the room
 <!-- alignment: center -->
 infamous .unwrap()
 
-![alt text](images/primagen.png)
-![alt text](images/hackaday.png)
-![alt text](images/hackernews.png)
+![image:width:50%](images/primagen.png)
+![image:width:50%](images/hackaday.png)
+![image:width:50%](images/hackernews.png)
 
 
 
 <!-- end_slide -->
 
-unwrap on None
+unwrap() on None type
 ===
 
 ```rust +exec
@@ -723,9 +766,6 @@ unwrap on None
 #   ParsingError
 # }
 let may_or_may_not_be: Option<u8> = None;
-let it_cannot_break_right: 
-      Result<u8, ImportantError> 
-      = Err(ImportantError::ParsingError);
 
 println!("That doesn't break :D also its side effect for logging! {}", may_or_may_not_be.unwrap());
 # }
@@ -733,7 +773,7 @@ println!("That doesn't break :D also its side effect for logging! {}", may_or_ma
 
 <!-- end_slide -->
 
-unwrap on Err(T)
+unwrap() on Err type
 ===
 
 ```rust +exec
@@ -743,17 +783,11 @@ unwrap on Err(T)
 # enum ImportantError {
 #   ParsingError
 # }
-let may_or_may_not_be: Option<u8> = None;
-let it_cannot_break_right: 
-      Result<u8, ImportantError> 
-      = Err(ImportantError::ParsingError);
+let it_cannot_break_right: Result<u8, ImportantError> = Err(ImportantError::ParsingError);
 
 println!("That doesn't break :D also its side effect for logging! {}", it_cannot_break_right.unwrap());
 # }
 ```
-
-
-
 
 <!-- end_slide -->
 
@@ -762,7 +796,7 @@ Rule of Thumb
 
 ```
 .unwrap() <- NEVER in production, ok if you're learning
-.expect("put your reason here why it should be Ok(T) or Some(T)) <- for debugging, but NEVER in production
+.expect("should work because xyz") <- for debugging, but NEVER in production
 ```
 
 <!-- pause -->
@@ -785,7 +819,7 @@ match my_value {
 }
 ```
 <!-- end_slide -->
-First short slide on pattern matching
+Exhaustive pattern matching
 ===
 ```rust +exec
 # fn main() {
@@ -811,7 +845,7 @@ println!("{}", answer);
 
 <!-- end_slide -->
 
-Second short slide on pattern matching
+Exhaustive pattern matching
 ===
 ```rust +exec
 # #[allow(unused)]
@@ -848,7 +882,7 @@ More on the type system
 
 <!-- column_layout: [1,2,1]-->
 <!-- column: 1 -->
-```bash +exec +no_background
+```bash +exec +line_numbers +no_background
 echo https://www.youtube.com/watch?v=z-0-bbc80JM | qrencode -t utf8i 
 ```
 
@@ -857,6 +891,9 @@ echo https://www.youtube.com/watch?v=z-0-bbc80JM | qrencode -t utf8i
 
 What's next?
 ===
+
+<!-- alignment: center -->
+<!-- font_size: 2 -->
 
 - A brief history of Rust ✅
 - Typesystem ✅
@@ -869,21 +906,26 @@ What's next?
 
 Ownership introduction
 ===
+<!-- alignment: center -->
+
 
 How do programming languages manage heap allocated data? 
 
 Historically, you had two choices.
+<!-- alignment: left -->
 
 <!-- pause -->
 
-# Garbage Collection (JVM family, Python, Go, C#, JavaScript, TypeScript, Haskell, Lisp, Clojure, OCaml, F#, Erlang, Elixir, Ruby, PHP, Swift, D, Julia):
+### Garbage Collection 
+# (JVM family, Python, Go, C#, JavaScript, TypeScript, Haskell, Lisp, Clojure, OCaml, F#, Erlang, Elixir, Ruby, PHP, Swift, D, Julia):
 <!-- incremental_lists: true -->
 - constant memory scans
 - conventional - you just don't care
 - BUT unpredictable performance overhead 
 
 
-# Manual Management (C, C++, Zig):
+### Manual Management
+# (C, C++, Zig):
 <!-- incremental_lists: true -->
 - you must explicitly allocate and free memory
 - you gain maximum control and performance
@@ -894,7 +936,8 @@ some call it skill issue, but at the end of the day, it costs money :(
  -->
 
 <!-- pause -->
-# Ownership (Rust)
+### Ownership 
+# (Rust):
 <!-- pause -->
 Rust uses RAII (Resource Acquisition Is Initialization). 
 <!-- pause -->
@@ -924,7 +967,7 @@ fn main() {
     
     println!("Back to outer: {}", s1); // s1 is still valid.
 } 
-// Main scope ends
+// Main scope ends, s1 is dropped
 ```
 
 <!-- end_slide -->
@@ -955,14 +998,18 @@ fn main() {
 Borrowing
 ===
 
-<!-- speaker_note: 
-Sometimes you just need a reference to the value, to some struct.
+<!-- speaker_note: |
+    Sometimes you just need a reference to the value, to some struct field, 
+    for comparison, logic, whatever
 
+    not necessarily you want to drop entire struct just because you wanted to, for example, validate it
+
+    For that, we use borrowing via references
 -->
 
 <!-- pause -->
 
-```rust +exec
+```rust +exec +line_numbers
 # #[derive(Debug)] // Needed for {:?} debugging information
 # struct Customer {
 #    name: String,
@@ -979,7 +1026,7 @@ Sometimes you just need a reference to the value, to some struct.
 
     // let r3 = &mut cust; this makes uncompilable code :(
 
-    if *age >= 10 && *second_age <= i32::MAX {
+    if age >= &10 && *second_age <= i32::MAX {
       println!("{} and {}", age, second_age); 
     } // r1 and r2 "die" here after their last use
       // cust is still valid
@@ -1041,7 +1088,7 @@ println!("{}", longest(x, y));
 <!-- end_slide -->
 Tired yet?
 ===
-
+<!-- font_size: 2 -->
 
 - A brief history of Rust ✅
 - Typesystem ✅
@@ -1055,6 +1102,20 @@ Tired yet?
 
 Heap and Stack
 ===
+
+<!-- speaker_note: |
+    Stack is a Last In First Out structure that stores variables of known, fixed size, 
+    primitive types like i32, u8, char etc.
+    rucially, the Stack also stores the metadata for complex types. When you have a String or a Vec, the pointer, length, and capacity live here on the Stack.
+
+    The Heap is for data that grows or has an unknown size.
+    When you put data on the Heap, you request a certain amount of space. The Memory Allocator finds an empty spot and returns a pointer (an address).
+    It is inherently slower than the Stack. The CPU has to follow a pointer (jump to an address) to find the data. This is called a pointer indirection.
+
+    In Rust, if a stack pointer to the heap goes out of scope, it frees the memory located at the heap
+
+-->
+
 
 ```mermaid +render
 %%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'monospace'}}}%%
@@ -1141,6 +1202,14 @@ graph TD
 Heap memory allocation
 ===
 
+<!-- speaker_note: |
+    If both owned the data, they would both try to "drop" (free) that heap memory when the function ends, causing a Double Free crash. By "moving," Rust ensures exactly one variable is responsible for cleaning up.
+
+    (Fun fact - NASA dissalows using Heap allocated memory)
+
+-->
+
+
 ```rust
 let s1 = String::from("Rust");
 let s2 = s1;
@@ -1167,12 +1236,6 @@ graph LR
     style S2 stroke:#333
 ```
 
-<!-- pause -->
-If both owned the data, they would both try to "drop" (free) that heap memory when the function ends, causing a Double Free crash. By "moving," Rust ensures exactly one variable is responsible for cleaning up.
-
-<!-- pause -->
-(Fun fact - NASA dissalows using Heap allocated memory)
-
 <!-- end_slide -->
 
 
@@ -1180,139 +1243,136 @@ If both owned the data, they would both try to "drop" (free) that heap memory wh
 
 Please, enough with the code, why should I care?
 ===
+<!-- speaker_note: |
+    Although it might be hard at first glance, the deeper you go the rabbit hole the better software engineer you become.
 
-dodaj spiker notes
+    Unless you're seasoned Cpp dev, you don't care about these things. 
+    
+    Rust promises such as Fearless Concurrency, Memory safety and lightning speed 
+    are built on top of Stack and Heap memory management, lifetimes, references and hard compiler rules.
+
+    But it's worth it, and now I'm going to tell you why
+
+-->
+
+<!-- end_slide -->
+<!-- font_size: 2 -->
+
+- A brief history of Rust ✅
+- Typesystem ✅
+- Memory Safety Core - Ownership, Borrowing, Lifetimes ✅
+- Heap and Stack ✅
+- Appliences
+- How to start
+
 <!-- end_slide -->
 
-
-Appliences - Backend and Async
+Appliences, part one
 ===
+
+<!-- speaker_note: |
+    tokio has it's own language
+    embassy - Marcin who is here with us gave a great talk on macros and embassy
+    axum -  I would name it FastAPI of Rust
+    sqlx = Supports Postgres, MySQL and SQLite without heavy ORM.
+-->
 
 <!-- pause -->
 Async:
 <!-- incremental_lists: true -->
-- **Tokio**, de-facto standard async runtime and a "language inside rust", a true gem of Rust. Used by AWS, Discord, Cloudflare.
-- **smol**, small, fast, and easy to understand. Great for CLI tooling.
-- **Embassy**, primary choice for async on embedded devices like STM32 and ESP32. Zero-cost async for bare metal
+- **tokio**, de-facto standard async runtime, a true gem of Rust
+- **smol**, small, fast, and easy to understand - great for CLI tooling
+- **embassy**, primary choice for async on embedded devices
 
 Web & Networking:
 <!-- incremental_lists: true -->
-- **Axum**, Web framework, maintained by Tokio team. Uses `tower` middleware - I would name it FastAPI of Rust
-- **Actix-web**, Actor based framework that consistently tops benchmarks
-- **Hyper**, a fast, correct HTTP implementation. Rarely used explicitly, but it almost powers every web library on this list
+- **axum**, web framework maintained by the team behind tokio
+- **actix-web**, actor based framework that consistently tops benchmarks
+- **hyper**, http implementation, backbone of two above
 
 Databases & Data Handling
 <!-- incremental_lists: true -->
-- **SQLx**, my weapon of choice. Pure Rust, async, and compile time checked SQL queries. Supports Postgres, MySQL and SQLite without heavy ORM.
+- **sqlx**, my weapon of choice. Pure Rust, async, and compile time checked SQL queries. 
 - **SeaORM**, built on top of SQLx, for Django-like or TypeORM enjoyers
-- **MongoDB**, official, fully async and highly performant mongo driver 
+- **mongodb**, highly performant mongo driver 
 
 
 <!-- end_slide -->
 
-Appliences - Data and Machine Learning
+Appliences, part two
 ===
-Data and ML landscape in Rust is shifting from experimental to high-performance alternative.
-DO SPEAKER NOTES
-While Python is the choice for experimentation, Rust shines in data intensive infrastructure and production.
+
+<!-- speaker_note: | 
+    Data and ML landscape in Rust is shifting from experimental to high-performance alternative.
+    While Python is the choice for experimentation, Rust shines in data intensive infrastructure and production.
+
+    polars - Multi threaded by default and significantly faster than pandas. Lazy API for query optimalization (thanks Apache Spark)
+    DataFusion - Uses Apache Arrow (also written in Rust) to run queries against Parquet, CSV and JSON in lightning speed.
+    delta-rs - Essential for building Lakehouse architectures without JVM/Spark.
+
+    burn - PyTorch-like DL framework that can target CPU and `GPU` (WGPU, CUDA), and even WebAssembly (federated learning!)
+    candle - developed by HuggingFace. The "lightweight" ML framework focused on making deployment and serverless inference easy (used heavily for LLMs)
+    limfa - self ex
+    tch-rs - Allows you to run existing PyTorch models in Rust environment - I leveraged it in my master thesis and it was hella fast
+-->
 <!-- pause -->
 Data engineering:
 <!-- incremental_lists: true -->
-- **Polars**, so called "pandas killer". Multi threaded by default and significantly faster than pandas. Lazy API for query optimalization (thanks Apache Spark)
-- **Apache DataFusion**, a powerful SQL query engine. Uses Apache Arrow (also written in Rust) to run queries against Parquet, CSV and JSON in lightning speed.
-- **Delta-rs**, a native Rust interface for Delta Lake. Essential for building Lakehouse architectures without JVM/Spark.
+- **Polars**, so called "pandas killer"
+- **Apache DataFusion**, a powerful SQL query engine
+- **delta-rs**, a native Rust interface for Delta Lake
 
 <!-- pause -->
 Machine Learning:
 <!-- incremental_lists: true -->
-- **burn**, PyTorch-like DL framework that can target CPU, `GPU` (WGPU, CUDA), and even WebAssembly (federated learning!)
-- **candle**, developed by HuggingFace. The "lightweight" ML framework focused on making deployment and serverless inference easy (used heavily for LLMs)
+- **burn**, PyTorch-like DL framework 
+- **candle**, lightweight ML framework
 - **limfa**, the scikit-learn of rust
-- **tch-rs**, a high level wrappers of C++ libtorch. Allows you to run existing PyTorch models in Rust environment (tested it, works wonderful)
+- **tch-rs**, a high level wrappers of C++ libtorch
 
 <!-- end_slide -->
 
-Appliences - WebAssembly and CLI
+Appliences, part three
 ===
 <!-- pause -->
 WebAssembly and Fullstack
 <!-- incremental_lists: true -->
-- **Leptos**, a reactive (like SolidJS) full stack framework that feels like React but runs at native speed. Compiles to WASM to update the DOM without VirtualDOM
-- **Dioxus**, Multi-platform UI. Write once - run everywhere. Uses React like virtual DOM to target Web, Desktop, and Mobile
-- **Yew**, the long standing veteran, pure WASM framerwork, component based, and very stable for enterprise apps.
-- **Wasm-bindgen**, the bridge between Rust and JS. It handles the "dirty work" of passing strings and objects across the Wasm boundary.
+- **Leptos**, imagine SolidJS but running on native speed
+- **Dioxus**, Multi-platform UI, Write once - run everywhere
+- **Yew**, the long standing veteran, pure WASM framerwork
+- **Wasm-bindgen**, the bridge between Rust and JS. It handles "the dirty work"
 
 CLI
 <!-- incremental_lists: true -->
-- **Clap**, Command line parser. Argparse of Rust.
-- **Ratatui**, Terminal User Interface application, lately enabled to compile bare metal. The future of embedded device development. `This presentation is written in *presenterm*, which utilizes Ratatui to interact with terminal.`
-- **Tauri**, UI application framework uses system's native webview and a Rust backend to create apps that are 10x smaller than discord or slack.
+- **Clap**, argparse of Rust, you don't need much else
 
 <!-- end_slide -->
 
-Other considerations
-===
-<!-- incremental_lists: true -->
-- **Bevy**, Game engine written in Rust. It's way too awesome.
-
-- **Ratatui**, Terminal User Interface application, lately enabled to compile bare metal. The future of embedded device development. `This presentation is written in *presenterm*, which utilizes Ratatui to interact with terminal.`
-
-- **Zed**, Creators of Atom IDE did a new IDE, Zed
-
-
-<!-- end_slide -->
-
-Rust tools to make your life better
+Appliences, part four
 ===
 
-<!-- pause -->
-For Python enjoyers
+# **Ratatui** 
+Terminal User Interface application, lately enabled to compile bare metal.
 
-| Tool | Replaces | Why |
-| :--- | :--- | :--- |
-| uv | pip, poetry, virtualenv | Install packages 10-100x faster than pip by parallelizing downloads and resolution without Python overhead |
-| Ruff | Flake8 | Linter/formatter that processes code on every keystroke |
-| ty | mypy, Pyright, Pylance | LSP that uses an incremental architecture to give real-time feedback 10–100x faster than mypy. |
-| polars | pandas | Apache arrow + Rust concurrency |
-| pydantic | pydantic | the core validation logic was moved to pydantic-core, making it 17x faster |
-| cryptography | cryptography | (used by requests, ssh) has migrated its low-level math to Rust for memory safety
+I say it's the future of embedded device development.
 
+This presentation is written in **presenterm**, which utilizes Ratatui to interact with terminal.
 
-<!-- pause -->
-
-<!-- new_line -->
-<!-- new_line -->
-
-<!-- new_line -->
-
-For JS enjoyers
-
-| Tool | Replaces | Why |
-| :--- | :--- | :--- |
-| SWC | Babel | A compiler that is ~20x faster than Babel, powers Next.js and Deno |
-| Turbopack | webpack | A successor to webpack |
-| biome | prettier + ESLint | single binary that formats and lints JS/TS projects instantly |
-| Tauri | Electron | Already mentioned, but the installers now weight ~3MB instead of ~100MB |
+Our friend Orhun Parmaksiz is the creator behind Ratatui, and posts amazing projects that people create using Ratatui on his LinkedIn feed. Besides, he livestreams Ratatui coding on youtube and recently created Tuitar, open source tuner for your electric guitar.
+<!-- alignment: center -->
+https://www.linkedin.com/in/orhunp/
+![image:width:20%](image.png)
 
 
-<!-- new_line -->
-<!-- new_line -->
+<!-- alignment: left -->
+# **Bevy**
 
-<!-- new_line -->
+Open source game engine written in Rust. It's way too awesome. Please check it out.
 
-<!-- pause -->
-
-For Linux enjoyers
-
-| Tool | Replaces | Why |
-| :--- | :--- | :--- |
-| ripgrep (rg) | grep | Faster searching that respects .gitignore automatically. Built into VS Code. |
-| eza | ls | adds colors, git status dots and icons to file listings |
-| bat | cat | Adds syntax highlighting and git diffs to file output |
-| zoxide (z) | cd | Remembers your most used directories. You type z pro and it jumps to /home/user/projects |
-| Atuin | history | Replaces your shell history with a searchable, syncable SQLite database |
+https://bevy.org/
 
 <!-- end_slide -->
+
 
 Apache Iggy (iggy.apache.org)
 ===
@@ -1325,9 +1385,6 @@ I must mention Apache Iggy. Written by Piotr Gankiewicz, is a high-performance, 
 I highly suggest familiarizing yourself with this platform, especially if you work with Kafka/redpanda.
 
 
-
-
-
 <!-- end_slide -->
 
 Apache Iggy
@@ -1336,24 +1393,108 @@ Apache Iggy
 ![alt text](images/iggy-2.png)
 
 
-```bash +exec +no_background
+```bash +exec +line_numbers +no_background
 echo https://www.youtube.com/watch?v=GkV306PyvqM | qrencode -t utf8i
 ```
 
 
 <!-- new_line -->
 
+Python tools written in Rust
+===
 
+# uv 
+(pip, poetry, virtualenv)
+- replaces pip, enables workspaces and generates lockfile for better versioning
+- heavily inspired by cargo, a Rust package manager  
+<!-- pause -->
+# Ruff 
+(Flake8)
+-  Linter/formatter that processes code on every keystroke
+<!-- pause -->
+# ty 
+(mypy, Pyright, Pylance) 
+- LSP (Language Server Protocol)
+- uses an incremental architecture to give real-time feedback 10–100x faster than mypy 
+<!-- pause -->
+# polars 
+(pandas) 
+- Apache arrow + Rust concurrency, what else do you need?
+<!-- pause -->
+# pydantic 
+(pydantic) 
+- the core validation logic was moved to pydantic-core, making it 17x faster 
+<!-- pause -->
+# cryptography
+(cryptography)  
+- used by requests, ssh 
+- has migrated its low-level math to Rust for memory safety
+
+<!-- end_slide -->
+JavaScript tools written in Rust
+===
+# SWC
+(Babel)
+- A compiler that is ~20x faster than Babel, powers Next.js and Deno
+
+# Turbopack 
+(webpack)
+- A successor
+
+# biome 
+(prettier + ESLint)
+- single binary that formats and lints JS/TS projects instantly 
+
+# Tauri 
+(Electron)
+made the installers weight ~3MB instead of ~100MB 
 
 
 <!-- end_slide -->
-Cargo
+Companies openly using Rust in their backend
 ===
-![alt text](images/wojciech.png)
-```bash +exec +no_background
-echo https://www.youtube.com/watch?v=wQ_OrmE_AEY | qrencode -t utf8i
-```
+Global
+<!-- incremental_lists: true -->
+1. Discord 
+2. Cloudflare
+3. Dropbox
+4. AWS
+5. Google
+6. Microsoft
+7. Meta
+8. Figma
+9. Shopify
 
+Our backyard
+<!-- incremental_lists: true -->
+1. Neptune.ai
+2. Air Space Intelligence
+3. Gielda Papierow Wartosciowych
+4. Synerise
+5. Cosmose AI
+6. Golem network
+7. Codility
+8. Anixe
+
+and the number is growing :)
+
+
+<!-- end_slide -->
+What's next?
+===
+
+<!-- alignment: center -->
+<!-- font_size: 2 -->
+
+- A brief history of Rust ✅
+- Typesystem ✅
+- Memory Safety Core - Ownership, Borrowing, Lifetimes ✅
+- Heap and Stack ✅
+- Appliences ✅
+- How to start
+
+
+<!-- end_slide -->
 
 <!-- end_slide -->
 So where to start my Rust journey?
@@ -1388,14 +1529,20 @@ https://rustlings.rust-lang.org/
 
 <!-- pause -->
 
-### How I would approach learning Rust again?
+### How would I approach learning Rust again?
 
 <!-- incremental_lists: true -->
 - Go through the book, get bored/excited with theory, do some `rustlings`
 - Read the documentation - the answers are there
-- Ensure the LSP has type hightlighting
+- Go solve some easy tasks on leetcode/hackerrank and familiraize with iterators
 
-![alt text](images/types.png)
+<!-- end_slide -->
+Cargo
+===
+![alt text](images/wojciech.png)
+```bash +exec +line_numbers +no_background
+echo https://www.youtube.com/watch?v=wQ_OrmE_AEY | qrencode -t utf8i
+```
 
 
 <!-- pause -->
