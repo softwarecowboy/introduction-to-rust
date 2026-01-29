@@ -1360,7 +1360,7 @@ I say it's the future of embedded device development.
 
 This presentation is written in **presenterm**, which utilizes Ratatui to interact with terminal.
 
-Our friend Orhun Parmaksiz is the creator behind Ratatui, and posts amazing projects that people create using Ratatui on his LinkedIn feed. Besides, he livestreams Ratatui coding on youtube and recently created Tuitar, open source tuner for your electric guitar.
+Orhun Parmaksiz is the creator behind Ratatui, and posts amazing projects that people create using Ratatui on his LinkedIn feed. Besides, he livestreams Ratatui coding on youtube and recently created Tuitar, open source tuner for your electric guitar.
 <!-- alignment: center -->
 https://www.linkedin.com/in/orhunp/
 ![image:width:20%](image.png)
@@ -1450,35 +1450,6 @@ JavaScript tools written in Rust
 # Tauri 
 (Electron)
 made the installers weight ~3MB instead of ~100MB 
-
-
-<!-- end_slide -->
-Companies openly using Rust in their backend
-===
-Global
-<!-- incremental_lists: true -->
-1. Discord 
-2. Cloudflare
-3. Dropbox
-4. AWS
-5. Google
-6. Microsoft
-7. Meta
-8. Figma
-9. Shopify
-
-Our backyard
-<!-- incremental_lists: true -->
-1. Neptune.ai
-2. Air Space Intelligence
-3. Gielda Papierow Wartosciowych
-4. Synerise
-5. Cosmose AI
-6. Golem network
-7. Codility
-8. Anixe
-
-and the number is growing :)
 
 
 <!-- end_slide -->
