@@ -1425,7 +1425,7 @@ Python tools written in Rust
 <!-- pause -->
 # pydantic 
 (pydantic) 
-- the core validation logic was moved to pydantic-core, making it 17x faster 
+- the core validation logic was moved to Rust, making it 17x faster 
 <!-- pause -->
 # cryptography
 (cryptography)  
@@ -1496,14 +1496,13 @@ What's next?
 - How to start
 
 
-<!-- end_slide -->
 
 <!-- end_slide -->
 So where to start my Rust journey?
 ==
 
-# The book
 <!-- pause -->
+# The book
 
 rustup doc --book
 
