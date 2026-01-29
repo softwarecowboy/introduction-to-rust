@@ -1397,8 +1397,8 @@ Apache Iggy
 echo https://www.youtube.com/watch?v=GkV306PyvqM | qrencode -t utf8i
 ```
 
+<!-- end_slide -->
 
-<!-- new_line -->
 
 Python tools written in Rust
 ===
@@ -1508,22 +1508,20 @@ rustup doc --book
 or
 
 https://doc.rust-lang.org/book/
-
 <!-- pause -->
 
 # Rustlings
-
 https://rustlings.rust-lang.org/
 
 
+# Rust by Example 
+https://doc.rust-lang.org/rust-by-example/
 <!-- pause -->
 
 # Get inspired
 <!-- incremental_lists: true -->
 - No Boilerplate
 - Code To The Moon 
-- Let's Get Rusty
-- The Rust Programming Language
 
 # Allow compiler to be your friend - don't be mad if your code doesn't compile, it's a feature
 
@@ -1535,6 +1533,8 @@ https://rustlings.rust-lang.org/
 - Go through the book, get bored/excited with theory, do some `rustlings`
 - Read the documentation - the answers are there
 - Go solve some easy tasks on leetcode/hackerrank and familiraize with iterators
+- Take your time!
+- Create
 
 <!-- end_slide -->
 Cargo
@@ -1545,16 +1545,16 @@ echo https://www.youtube.com/watch?v=wQ_OrmE_AEY | qrencode -t utf8i
 ```
 
 
-<!-- pause -->
-# Experiment
-
-
 <!-- end_slide -->
-Thank you
-===
+
 
 <!-- alignment: center -->
-
+<!-- font_size: 4 -->
+<!-- new_line -->
+Thank you
+<!-- font_size: 2 -->
+stay curious
+<!-- font_size: 1 -->
 <!-- jump_to_middle -->
 <!-- column_layout: [1, 2, 1]-->
 <!-- column: 1 -->
@@ -1568,4 +1568,4 @@ presentation repository
 
 <!-- column: 2 -->
 follow Rust Poland
-![alt text](images/slides-repo.png)
+![alt text](images/rust-poland.png)
